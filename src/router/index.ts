@@ -10,10 +10,6 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/home'
   },
   {
-    path: '/',
-    redirect: '/home'
-  },
-  {
     path: '/home',
     name: 'Home',
     component: Inicio

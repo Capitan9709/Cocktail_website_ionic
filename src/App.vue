@@ -14,9 +14,12 @@
               </ion-item>
 
             </ion-menu-toggle>
-
+            
           </ion-list>
-          
+          <ion-item>
+            <ion-icon aria-hidden="true" slot="start" :ios="logoGithub" :md="logoGithub"></ion-icon>
+            <a href="https://github.com/Capitan9709/Cocktail_website_ionic" target="_blank">GitHub</a>
+          </ion-item>
         </ion-content>
       </ion-menu>
       <ion-router-outlet id="main-content"></ion-router-outlet>
@@ -37,18 +40,17 @@ import {
   IonMenuToggle,
   IonNote,
   IonRouterOutlet,
-  IonSplitPane,
+  IonSplitPane
 } from '@ionic/vue';
 import { ref } from 'vue';
 import {
   accessibilityOutline,
   accessibilitySharp,
-  heartOutline,
-  heartSharp,
   globeOutline,
   globeSharp,
   wineOutline,
   wineSharp,
+  logoGithub,
 } from 'ionicons/icons';
 
 const selectedIndex = ref(0);

@@ -207,9 +207,6 @@ async function showMore(cocktail){
   position: absolute;
   left: 0;
   right: 0;
-  margin-top: 31em;
-  height: 100%;
-  transform: translateY(-50%);
 }
 
 #container strong {
