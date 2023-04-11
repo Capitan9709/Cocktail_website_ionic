@@ -17,31 +17,34 @@
       </ion-header>
 
       <div id="container">
-        <!-- <strong class="capitalize">Cocktails</strong> -->
+        
+        <div id="searchContainer">
+          <!-- Search by Name -->
+          <ion-item class="inputs">
+            <ion-input aria-label="filterName" placeholder="Search by Name" v-model="filterName" @keyup.enter="searchByName"></ion-input>
+            <ion-button @click="searchByName">Search</ion-button>
+          </ion-item>
 
-        <!-- Search by Name -->
-        <ion-item class="inputs">
-          <ion-input aria-label="filterName" placeholder="Search by Name" v-model="filterName" @keyup.enter="searchByName"></ion-input>
-          <ion-button @click="searchByName">Search</ion-button>
-        </ion-item>
-
-        <!-- Search by ingredient -->
-        <ion-item class="inputs">
-          <ion-input aria-label="filterIngredient" placeholder="Search by Ingredient" v-model="filterIngredient" @keyup.enter="searchByIngredient"></ion-input>
-          <ion-button @click="searchByIngredient">Search</ion-button>
-        </ion-item>
+          <!-- Search by ingredient -->
+          <ion-item class="inputs">
+            <ion-input aria-label="filterIngredient" placeholder="Search by Ingredient" v-model="filterIngredient" @keyup.enter="searchByIngredient"></ion-input>
+            <ion-button @click="searchByIngredient">Search</ion-button>
+          </ion-item>
+        </div>
 
         <div id="cocktailsContainer">
+
+          <div id="showErrors" v-if="errorText === true">
+            <p>There´s something wrong</p>
+            <p>Maybe we can´t find the thing you were looking for</p>
+            <p>Try again</p>
+          </div>
 
           <ion-spinner id="spinnerPrincipal" v-if="loaded === false" name="crescent"></ion-spinner>
 
           <div class="cocktail" v-for="(cocktail, i) in cocktails" :key="i">
             <h2>{{ cocktail.strDrink }}</h2>
             <img :src="cocktail.strDrinkThumb" alt="cocktail image">
-            <h3 v-if="cocktail.strAlcoholic != undefined">Is Alcoholic: {{ cocktail.strAlcoholic === 'Alcoholic' ? 'Yes' : 'No' }}</h3>
-            <h4 v-if="cocktail.strCategory != undefined">Category: {{ cocktail.strCategory }}</h4>
-            <h4 v-if="cocktail.strGlass != undefined">Recommended Glass: {{ cocktail.strGlass }}</h4>
-            <p class="instructions" v-if="cocktail.strInstructions != undefined">Instructions: {{ cocktail.strInstructions }}</p>
             
             <ion-button expand="block" @click="showMore(cocktail.idDrink)">Open</ion-button>
         
@@ -108,25 +111,32 @@ const filterName = ref('');
 const filterIngredient = ref('');
 const inputText = ref('');
 var loaded = ref(true);
-var cocktails = ref([]);
+var cocktails = ref('');
 var isOpen = ref(false);
 var loadedModal = ref(true);
 var cocktailModal = ref('');
+var errorText = ref(false);
 
 function setOpen(value: boolean) {
   isOpen.value = value;
 }
 
 async function searchByName(){
+  cocktails.value = '';
+
   filterIngredient.value = '';
   inputText.value = filterName.value;
   loaded.value = false;
+  errorText.value = false;
   try{
     if(inputText.value != ''){
       if(loaded.value === false){
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`);
         var data = await response.json();
         console.log(data.drinks);
+        if (data.drinks === null){
+          errorText.value = true;
+        }
         cocktails.value = data.drinks;
         console.log(cocktails.value);
         loaded.value = true;
@@ -137,13 +147,17 @@ async function searchByName(){
   }
   catch(error){
     console.log(error);
+    errorText.value = true;
   }
 }
 
 async function searchByIngredient(){
+  cocktails.value = '';
+
   filterName.value = '';
   inputText.value = filterIngredient.value;
   loaded.value = false;
+  errorText.value = false;
   try{
     if(inputText.value != ''){
       if(loaded.value === false){
@@ -159,6 +173,7 @@ async function searchByIngredient(){
   }
   catch(error){
     console.log(error);
+    errorText.value = true;
   }
 }
 
@@ -212,6 +227,21 @@ async function showMore(cocktail){
 #container a {
   text-decoration: none;
 }
+#searchContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  gap: 1em;
+}
+@media screen and (max-width: 750px) {
+  #searchContainer{
+    display: flex;
+    flex-direction: column;
+  }
+}
 .inputs{
   margin-top: 1em;
   margin-bottom: 1em;
@@ -226,10 +256,13 @@ async function showMore(cocktail){
   margin-bottom: 5em;
 }
 #spinnerPrincipal{
-  margin-top: 10em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .cocktail {
-  width: 300px;
+  width: 30vh;
   margin: 1em;
   border: 1px solid #ccc;
   border-radius: 5px;
