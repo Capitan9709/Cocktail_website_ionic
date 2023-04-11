@@ -238,10 +238,17 @@ async function showMore(cocktail){
 }
 .modalContent{
   display: flex;
-  flex-direction: columns;
-  flex-wrap: wrap;
-  align-items: start;
+  flex-direction: row-reverse;
   justify-content: center;
+  overflow: auto;
+  padding-bottom: 3em;
+}
+@media screen and (max-width: 750px) {
+  .modalContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .imageDetail{
   width: 30vh;
