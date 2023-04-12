@@ -290,9 +290,9 @@ async function showMore(cocktail){
   width: 30vh;
   margin: 1em;
   border-radius: 5px;
-  background-color: rgb(12, 11, 11);
+  background-color: #242323;
   padding: 1em;
-  box-shadow: 4px 4px 8px rgb(61, 61, 61);
+  box-shadow: 4px 4px 7px #000000;
 }
 .cocktail img{
   border-radius: 5px;
