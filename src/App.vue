@@ -16,10 +16,12 @@
             </ion-menu-toggle>
             
           </ion-list>
-          <ion-item>
+
+          <ion-item href="https://github.com/Capitan9709/Cocktail_website_ionic" target="_blank">
             <ion-icon aria-hidden="true" slot="start" :ios="logoGithub" :md="logoGithub"></ion-icon>
-            <a href="https://github.com/Capitan9709/Cocktail_website_ionic" target="_blank">GitHub</a>
+            <ion-label>GitHub</ion-label>
           </ion-item>
+
         </ion-content>
       </ion-menu>
       <ion-router-outlet id="main-content"></ion-router-outlet>

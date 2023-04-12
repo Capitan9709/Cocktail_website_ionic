@@ -254,7 +254,7 @@ async function showMore(cocktail){
 }
 #spinnerPrincipal{
   position: absolute;
-  top: 50%;
+  top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

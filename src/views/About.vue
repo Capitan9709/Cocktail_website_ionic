@@ -111,6 +111,9 @@ import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, Io
 </script>
   
 <style scoped>
+ion-page{
+  background-color: #2a2a2a;
+}
 #container {
   text-align: center;
   position: absolute;
@@ -226,5 +229,53 @@ import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, Io
   padding-left: 5em;
   padding-right: 5em;
   text-align: center;
+}
+
+@media screen and (max-width: 750px) {
+  #containerPresentation{
+    align-items: center;
+  }
+  #containerPresentation p{
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: center;
+  }
+  #containerHistory{
+    align-items: center;
+  }
+  #containerHistory p{
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: center;
+  }
+  #containerObjetive{
+    align-items: center;
+  }
+  #containerObjetive p{
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: center;
+  }
+  #containerDevelopment{
+    align-items: center;
+  }
+  #containerDevelopment p{
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: center;
+  }
+  #containerSummary{
+    align-items: center;
+  }
+  #containerSummary p{
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: center;
+  }
 }
 </style>
