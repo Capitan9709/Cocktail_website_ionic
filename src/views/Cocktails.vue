@@ -18,17 +18,33 @@
 
       <div id="container">
         
+        <div id="containerSearchPresentation">
+          <strong>Search by Name or by Ingredient</strong>
+          <p><b>Instructions</b> for using the cocktail search engine:</p>
+
+          <p>To use the search engine, you have two options.</p>
+            
+          <p><b>The first option</b> is to search by name or part of the name. 
+            This will display all cocktails that contain the name or 
+            part of the name that you entered in the search bar.</p>
+            
+          <p><b>The second option</b> is to search by ingredient. To do this, 
+            you must enter the full name of the ingredient you want to 
+            search for. This will display all cocktails that contain 
+            that particular ingredient.</p>
+        </div>
+
         <div id="searchContainer">
           <!-- Search by Name -->
           <ion-item class="inputs">
             <ion-input aria-label="filterName" placeholder="Search by Name" v-model="filterName" @keyup.enter="searchByName"></ion-input>
-            <ion-button @click="searchByName">Search</ion-button>
+            <ion-button fill="clear" size="default" color="dark" @click="searchByName">Search</ion-button>
           </ion-item>
 
           <!-- Search by ingredient -->
           <ion-item class="inputs">
             <ion-input aria-label="filterIngredient" placeholder="Search by Ingredient" v-model="filterIngredient" @keyup.enter="searchByIngredient"></ion-input>
-            <ion-button @click="searchByIngredient">Search</ion-button>
+            <ion-button fill="clear" size="default" color="dark" @click="searchByIngredient">Search</ion-button>
           </ion-item>
         </div>
 
@@ -46,7 +62,7 @@
             <h2>{{ cocktail.strDrink }}</h2>
             <img :src="cocktail.strDrinkThumb" alt="cocktail image">
             
-            <ion-button expand="block" @click="showMore(cocktail.idDrink)">Open</ion-button>
+            <ion-button expand="block" fill="clear" size="default" color="dark" @click="showMore(cocktail.idDrink)">Open</ion-button>
         
             <ion-modal :is-open="isOpen" v-for="(cocktailDetail, index) in cocktailModal" :key="index">
               <ion-header>
@@ -224,6 +240,18 @@ async function showMore(cocktail){
 #container a {
   text-decoration: none;
 }
+#containerSearchPresentation{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+#containerSearchPresentation p{
+  margin: 0.4em;
+  width: 50vh;
+}
 #searchContainer{
   display: flex;
   flex-direction: row;
@@ -261,10 +289,13 @@ async function showMore(cocktail){
 .cocktail {
   width: 30vh;
   margin: 1em;
-  border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: rgb(12, 11, 11);
   padding: 1em;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 8px rgb(61, 61, 61);
+}
+.cocktail img{
+  border-radius: 5px;
 }
 .modalContent{
   display: flex;
@@ -282,6 +313,7 @@ async function showMore(cocktail){
 }
 .imageDetail{
   width: 30vh;
+  border-radius: 5px;
 }
 .instructions {
   height: 20vh;
