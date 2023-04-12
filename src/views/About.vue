@@ -10,6 +10,9 @@
     </ion-header>
 
     <ion-content :fullscreen="true">
+      <ion-refresher slot="fixed" @ionRefresh="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
       <ion-header collapse="condense">
         <ion-toolbar>
           <ion-title size="large">About</ion-title>
@@ -106,7 +109,14 @@
 </template>
   
 <script setup lang="ts">
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonRefresher, IonRefresherContent, IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+
+const handleRefresh = (event: CustomEvent) => {
+  setTimeout(() => {
+    window.location.reload();
+    event.detail.complete();
+  }, 2000);
+};
 
 </script>
   

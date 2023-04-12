@@ -10,6 +10,9 @@
     </ion-header>
 
     <ion-content :fullscreen="true">
+      <ion-refresher slot="fixed" @ionRefresh="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
       <ion-header collapse="condense">
         <ion-toolbar>
           <ion-title size="large">Cocktails</ion-title>
@@ -119,7 +122,7 @@
 </template>
   
 <script setup lang="ts">
-import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonModal, IonSpinner, IonButton, IonLabel, IonItem, IonInput, IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonRefresher, IonRefresherContent, IonModal, IonSpinner, IonButton, IonLabel, IonItem, IonInput, IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { ref } from 'vue';
 
@@ -132,6 +135,13 @@ var isOpen = ref(false);
 var loadedModal = ref(true);
 var cocktailModal = ref('');
 var errorText = ref(false);
+
+const handleRefresh = (event: CustomEvent) => {
+  setTimeout(() => {
+    window.location.reload();
+    event.detail.complete();
+  }, 2000);
+};
 
 function setOpen(value: boolean) {
   isOpen.value = value;
