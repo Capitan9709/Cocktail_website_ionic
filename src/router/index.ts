@@ -26,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/:catchAll(.*)',
-    redirect: '/home'
+    redirect: '/'
   }
 ]
 
