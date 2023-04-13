@@ -33,6 +33,25 @@
                 So, grab your shaker and let's get mixing!
             </p>
           </div>
+          <div id="containerInstructions">
+            <div id="containerInstructionsData">
+              <h3>Instructions:</h3>
+              <p>
+                To keep seeing more drinks, go to the cocktail section.
+                <ul>
+                  <li>
+                    On desktop, it's located on the left.
+                  </li>
+                  <li>
+                    On mobile, you need to tap on the three bars and you will find it there.
+                  </li>
+                </ul> 
+              </p>
+            </div>
+            <div id="containerInstructionsImage">
+              <img src="../../resources/manual.png" alt="instructions">
+            </div>
+          </div>
           <div id="containerPopularDrinks">
             <h3>Popular Drinks</h3>
             <div id="containerPopularDrinksList">
@@ -186,6 +205,50 @@ const handleRefresh = (event: CustomEvent) => {
   margin-bottom: 2em;
 }
 
+#containerInstructions{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+    padding-bottom: 2em;
+    border-bottom: #8c8c8c 1px solid;
+}
+#containerInstructions li{
+  text-align: start;
+  list-style: none;
+}
+#containerInstructionsImage{
+  width: 50%;
+}
+#containerInstructionsImage img{
+  margin-top: 2em;
+  width: 20vh;
+  border-radius: 5px;
+  padding: 1em;
+  background-color: #242323;
+  box-shadow: 4px 4px 7px #000000;
+}
+#containerInstructionsData{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 750px) {
+  #containerInstructions{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #containerInstructions li{
+    text-align: center;
+  }
+  #containerInstructionsImage, #containerInstructionsData{
+    width: 100%;
+  }
+}
 #containerPopularDrinks {
   margin-top: 0.5em;
   display: flex;
